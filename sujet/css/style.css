@@ -21,6 +21,10 @@
   --color-cocoa-800: #3a2f28;
   --color-cocoa-950: #231b17;
 
+  /* Badge végétarien */
+  --color-veggie: #5a8c5a;
+  --color-veggie-dark: #3f6b3f;
+
   --font-sans: 'Segoe UI', system-ui, sans-serif;
   --font-heading: Georgia, 'Playfair Display', serif;
 
@@ -30,6 +34,20 @@
   --container-site: 68.75rem; /* 1100px */
 
   --breakpoint-2k: 160rem; /* 2560px */
+
+  /* Apparition du hero */
+  --animate-fade-in-up: fade-in-up 0.6s ease both;
+
+  @keyframes fade-in-up {
+    from {
+      opacity: 0;
+      transform: translateY(16px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
 }
 
 @layer base {
@@ -67,208 +85,6 @@
   .btn-outline {
     @apply border-primary text-primary hover:bg-primary hover:text-white;
   }
-}
-
-/* ============================= Hero ============================= */
-
-.hero {
-  background: linear-gradient(135deg, #fff 0%, var(--color-cream) 100%);
-  padding: --spacing(18) 0;
-}
-
-.hero__inner {
-  display: grid;
-  grid-template-columns: 1.1fr 0.9fr;
-  gap: --spacing(12);
-  align-items: center;
-}
-
-/* Un <img> comme enfant direct d'une grille garde sa taille intrinsèque
-   comme largeur minimale par défaut (même avec max-width:100% dessus) :
-   sans ce reset, il peut forcer toute la page à scroller horizontalement
-   sur petit écran. */
-.hero__inner > * {
-  min-width: 0;
-}
-
-.hero__content {
-  animation: fade-in-up 0.6s ease both;
-}
-
-.hero__eyebrow {
-  text-transform: uppercase;
-  letter-spacing: 0.1em;
-  font-size: 0.8rem;
-  font-weight: 700;
-  color: var(--color-primary);
-  margin-bottom: --spacing(2);
-}
-
-.hero__title {
-  font-size: 3rem;
-}
-
-.hero__subtitle {
-  font-size: 1.125rem;
-  color: var(--color-muted);
-  max-width: 38ch;
-}
-
-.hero__actions {
-  display: flex;
-  gap: --spacing(4);
-  margin-top: --spacing(6);
-}
-
-.hero__image {
-  border-radius: var(--radius-2xl);
-  box-shadow: var(--shadow-lifted);
-  aspect-ratio: 4 / 3;
-  object-fit: cover;
-}
-
-@keyframes fade-in-up {
-  from {
-    opacity: 0;
-    transform: translateY(16px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
-
-/* ============================= Sections génériques ============================= */
-
-.section {
-  padding: --spacing(18) 0;
-}
-
-.section--alt {
-  background: var(--color-surface);
-}
-
-.section__header {
-  text-align: center;
-  max-width: 60ch;
-  margin: 0 auto --spacing(12);
-}
-
-.section__eyebrow {
-  text-transform: uppercase;
-  letter-spacing: 0.1em;
-  font-size: 0.8rem;
-  font-weight: 700;
-  color: var(--color-primary);
-}
-
-.section__title {
-  font-size: 2.25rem;
-}
-
-.section__intro {
-  color: var(--color-muted);
-}
-
-/* ============================= Grille de plats (cartes) ============================= */
-
-.dish-grid {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: --spacing(8);
-}
-
-.dish-card {
-  background: var(--color-surface);
-  border: 1px solid var(--color-line);
-  border-radius: var(--radius-2xl);
-  overflow: hidden;
-  box-shadow: var(--shadow-soft);
-  transition: transform 0.25s ease, box-shadow 0.25s ease;
-}
-
-.dish-card:hover {
-  transform: translateY(-6px);
-  box-shadow: var(--shadow-lifted);
-}
-
-.dish-card__image {
-  width: 100%;
-  height: 200px;
-  object-fit: cover;
-}
-
-.dish-card__body {
-  padding: --spacing(6);
-}
-
-.dish-card__top {
-  display: flex;
-  align-items: flex-start;
-  justify-content: space-between;
-  gap: --spacing(2);
-}
-
-.dish-card__title {
-  font-size: 1.15rem;
-  margin: 0;
-}
-
-.dish-card__price {
-  font-weight: 700;
-  color: var(--color-primary);
-  white-space: nowrap;
-}
-
-.dish-card__desc {
-  color: var(--color-muted);
-  font-size: 0.925rem;
-}
-
-.badge {
-  display: inline-block;
-  font-size: 0.7rem;
-  font-weight: 700;
-  text-transform: uppercase;
-  letter-spacing: 0.05em;
-  padding: 0.2rem 0.6rem;
-  border-radius: 999px;
-  background: rgba(162, 59, 46, 0.1);
-  color: var(--color-primary);
-}
-
-.badge--veggie {
-  background: rgba(90, 140, 90, 0.15);
-  color: #3f6b3f;
-}
-
-/* ============================= Témoignages ============================= */
-
-.testimonial-grid {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: --spacing(8);
-}
-
-.testimonial {
-  background: var(--color-cream);
-  border-radius: var(--radius-2xl);
-  padding: --spacing(8);
-  border: 1px solid var(--color-line);
-}
-
-.testimonial__quote {
-  font-style: italic;
-  margin-bottom: --spacing(4);
-}
-
-.testimonial__author {
-  display: flex;
-  align-items: center;
-  gap: --spacing(4);
-  font-weight: 600;
-  font-size: 0.9rem;
-  color: var(--color-muted);
 }
 
 /* ============================= Menu (page carte) ============================= */
@@ -437,39 +253,12 @@
 /* ============================= Responsive (desktop-first) ============================= */
 
 @media (max-width: 900px) {
-  .hero__inner {
-    grid-template-columns: 1fr;
-  }
-
-  .hero__title {
-    font-size: 2.25rem;
-  }
-
-  .dish-grid,
-  .testimonial-grid {
-    grid-template-columns: repeat(2, 1fr);
-  }
-
   .contact-grid {
     grid-template-columns: 1fr;
   }
 }
 
 @media (max-width: 600px) {
-  .hero__title {
-    font-size: 1.75rem;
-  }
-
-  .hero__actions {
-    flex-direction: column;
-    align-items: stretch;
-  }
-
-  .dish-grid,
-  .testimonial-grid {
-    grid-template-columns: 1fr;
-  }
-
   .form__row {
     flex-direction: column;
     gap: 0;
